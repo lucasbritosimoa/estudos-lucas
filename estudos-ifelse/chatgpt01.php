@@ -9,7 +9,7 @@
         body {
             background: linear-gradient(to right, #EAE8E3, #83E6E9);
             font-family: arial;
-            color: #00000;
+            color: #000;
             font-size: 25px;
             text-align: center;
             line-height: 1.5em;
