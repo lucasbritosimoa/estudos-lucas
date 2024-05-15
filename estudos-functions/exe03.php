@@ -4,8 +4,21 @@
 Se a quantidade em estoque for maior ou igual a 10 unidades, a função deve retornar uma mensagem indicando que o produto está em estoque suficiente. Caso contrário, a função deve retornar uma mensagem indicando que o produto precisa ser reabastecido.
 
 Crie um formulário simples que permita ao usuário inserir o nome do produto e a quantidade em estoque. Ao enviar o formulário, chame a função criada e exiba a mensagem resultante. -->
-    <?php 
-    
+    <?php
+    function estoque($estoque)
+    {
+        if ($estoque >= 10) {
+            $status = "O Produto está em estoque suficiente";
+        } else {
+            $status = "O Produto precisa ser reabastecido";
+        }
+        return $status;
+    }
+
+    $prod = $_GET['prod'] ?? "Informe o produto!";
+    $estoque = $_GET['qtd'] ?? 0;
+    $status = estoque($estoque);
+
     ?>
 </section>
 <!DOCTYPE html>
@@ -14,7 +27,7 @@ Crie um formulário simples que permita ao usuário inserir o nome do produto e 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do documento</title>
+    <title>Exercício 03</title>
     <style>
         body {
             background: linear-gradient(to right, #EAE8E3, #83E6E9);
@@ -28,18 +41,32 @@ Crie um formulário simples que permita ao usuário inserir o nome do produto e 
 </head>
 
 <body>
-    <h2>Nome do estudo</h2>
+    <h2>Exercício 03 - functions</h2>
+
     <section id="formulario">
+        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="get">
 
+            <label for="prod">Informe o nome do produto</label>
+            <input type="text" name="prod" id="idprod" value="<?= $prod ?>" required>
+            <label for="qtd">Qual a quantidade em estoque?</label>
+            <input type="number" name="qtd" id="idqtd" value="<?= $estoque ?>">
+            <input type="submit" value="Verificar">
+
+
+        </form>
     </section>
-    <p>
-    <main>
 
-        <?php
-        echo "Olá Mundo!";
+    <?php if (!empty($_GET['prod'])) : ?>
+        <p>
+        <main>
 
-        ?>
-    </main>
+            <?php
+            echo "O produto <em>$prod</strong> tem <em>$estoque</em> unidades em estoque.<br><strong>$status</strong>.";
+
+            ?>
+        </main>
+
+    <?php endif; ?>
     </p>
 </body>
 
